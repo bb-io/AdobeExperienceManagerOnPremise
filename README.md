@@ -19,20 +19,6 @@ Before you connect to AEM, you need to have the following:
 - You know your base URL for AEM environment. The base URL is the URL of your AEM instance, e.g. `https://author-xxxx-xxxxx.adobeaemcloud.com`.
 - You have username and password for the AEM instance. This is the username and password of a user with sufficient permissions to perform the actions you want to automate.
 
-## Steps to create technical account and get a certificate
-
-1. Open [Cloud Manager](https://experience.adobe.com/cloud-manager/landing.html).
-2. Select needed program. 
-![image auth step 2](docs/images/auth_step_2.png)
-3. Open Developer Console for needed Author environment. 
-![image auth step 3](docs/images/auth_step_3.png)
-4. Switch to `Integrations` tab and `Create new technical account`. 
-![image auth step 4](docs/images/auth_step_4.png)
-5. Unfold created private key and `View` the data. 
-![image auth step 5](docs/images/auth_step_5.png)
-6. Use the `Download` button to obtain the raw data and store it in a file or another location from which it will be used for integration. 
-![image auth step 6](docs/images/auth_step_6.png)
-
 ## Connecting
 
 1. Navigate to apps and search for **AEM**
