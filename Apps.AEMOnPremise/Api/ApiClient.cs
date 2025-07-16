@@ -11,17 +11,17 @@ using RestSharp.Authenticators;
 namespace Apps.AEMOnPremise.Api;
 
 public class ApiClient(List<AuthenticationCredentialsProvider> credentials) : BlackBirdRestClient(new()
-    {
-        BaseUrl = new Uri(credentials.GetBaseUrl()),
-        ThrowOnAnyError = false,
-        Authenticator = new HttpBasicAuthenticator(credentials.GetCredentialValue(CredNames.Username, "Username"), credentials.GetCredentialValue(CredNames.Password, "Password"))
-    })
+{
+    BaseUrl = new Uri(credentials.GetBaseUrl()),
+    ThrowOnAnyError = false,
+    Authenticator = new HttpBasicAuthenticator(credentials.GetCredentialValue(CredNames.Username, "Username"), credentials.GetCredentialValue(CredNames.Password, "Password"))
+})
 {
     public override async Task<RestResponse> ExecuteWithErrorHandling(RestRequest request)
     {
         request.AddHeader("Cache-Control", "no-cache");
         var response = await base.ExecuteWithErrorHandling(request);
-        if(response.ContentType == "text/html")
+        if (response.ContentType == "text/html")
         {
             throw new PluginApplicationException($"We got an unexpected HTML response from the server. Please, verify that your AEM instance is up and running (not hibernated)");
         }
@@ -34,13 +34,13 @@ public class ApiClient(List<AuthenticationCredentialsProvider> credentials) : Bl
         var result = new List<T>();
         var offset = 0;
         var limit = 50;
-        
+
         var limitParameter = request.Parameters.FirstOrDefault(p => p.Name?.ToString().Equals("limit", StringComparison.OrdinalIgnoreCase) == true);
         if (limitParameter != null && limitParameter.Value != null)
         {
             limit = Convert.ToInt32(limitParameter.Value);
         }
-        
+
         bool hasMore;
         do
         {
@@ -56,20 +56,20 @@ public class ApiClient(List<AuthenticationCredentialsProvider> credentials) : Bl
             {
                 result.AddRange(response.Pages);
             }
-            
+
             hasMore = result.Count < response.Total;
             offset += limit;
-            
+
         } while (hasMore);
-        
+
         return result;
     }
 
     protected override Exception ConfigureErrorException(RestResponse response)
     {
-        if(string.IsNullOrEmpty(response.Content))
+        if (string.IsNullOrEmpty(response.Content))
         {
-            if(string.IsNullOrEmpty(response.ErrorMessage))
+            if (string.IsNullOrEmpty(response.ErrorMessage))
             {
                 throw new PluginApplicationException($"Error while executing request. Status code: {response.StatusCode}; Description: {response.StatusDescription}");
             }
@@ -77,23 +77,23 @@ public class ApiClient(List<AuthenticationCredentialsProvider> credentials) : Bl
             throw new PluginApplicationException(response.ErrorMessage);
         }
 
-        try 
+        try
         {
             var errorDto = JsonConvert.DeserializeObject<ErrorDto>(response.Content);
-            
+
             if (errorDto != null)
             {
-                var errorMessage = !string.IsNullOrEmpty(errorDto.Message) 
-                    ? errorDto.Message 
+                var errorMessage = !string.IsNullOrEmpty(errorDto.Message)
+                    ? errorDto.Message
                     : errorDto.Error;
-                    
+
                 return new PluginApplicationException(
                     $"{errorMessage} (Status code: {errorDto.Status}, Path: {errorDto.Path})");
             }
         }
         catch
         { }
-        
+
         return new PluginApplicationException(response.Content);
     }
 }
