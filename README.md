@@ -8,14 +8,16 @@ Blackbird is the new automation backbone for the language technology industry. B
 
 AEM (Adobe Experience Manager) is a Content Management System (CMS) that allows users and companies to easily build websites, apps, and manage web pages and content. AEM is used by developers and marketers to organize and distribute content across digital channels.
 
+The only difference between this app and the 'AEM' app is the authentication method. While the AEM app requires an integration certificate, this app uses a username and password for authentication.
+
 ## Before setting up
 
 Before you connect to AEM, you need to have the following:
 
 - AEM instance running and accessible from the Blackbird platform.
 - The Blackbird AEM plugin installed on your AEM instance. Its distribution and installation instructions can be found [here](https://github.com/bb-io/AEM) (prerequisites 1-8) and an AEM maintainer/developer should perform this installation.
-- You have a technical account and created a private key for it so you can obtain a certificate to connect to AEM (after installing the plugin). Below in the `Steps to create technical account` section, you can find the steps to create a technical account and a private key and how to obtain a certificate.
 - You know your base URL for AEM environment. The base URL is the URL of your AEM instance, e.g. `https://author-xxxx-xxxxx.adobeaemcloud.com`.
+- You have username and password for the AEM instance. This is the username and password of a user with sufficient permissions to perform the actions you want to automate.
 
 ## Steps to create technical account and get a certificate
 
@@ -38,7 +40,8 @@ Before you connect to AEM, you need to have the following:
 3. Name your connection for future reference e.g., 'My AEM'
 4. Fill in the following fields:
    - **Base URL**: Your AEM base URL (e.g., `https://author-xxxx-xxxxx.adobeaemcloud.com`)
-   - **Integration JSON certificate**: Integration certificate in JSON format. Can be found in the Developer Console. Example: { "ok": true, "integration": { "imsEndpoint": "ims-na1.adobelogin.com", ... } "statusCode": 200}
+   - **Username**: Your AEM username
+   - **Password**: Your AEM password
 5. Click _Connect_
 6. Confirm that the connection has appeared and the status is _Connected_
 
