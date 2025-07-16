@@ -1,0 +1,19 @@
+{
+  "jcr:content": {
+    "jcr:title": "Ancient Forest",
+    "root": {
+      "layout": "responsiveGrid",
+      "container": {
+        "layout": "responsiveGrid",
+        "title": {},
+        "container": {
+          "layout": "responsiveGrid",
+          "text": {
+            "text": "<p>The ancient forest is a mysterious and timeless place, home to towering trees that have stood for centuries. Covered in thick moss and echoing with the sounds of wildlife, it offers a glimpse into a world untouched by modern life. Sunlight filters through the dense canopy, casting shifting patterns on the forest floor. Many believe these forests hold secrets of the past, hidden within their roots and shadows. Walking through them feels like stepping into a forgotten legend. Modified at 09.05.2025 10:52</p>",
+            "textIsRich": "true"
+          }
+        }
+      }
+    }
+  }
+}
