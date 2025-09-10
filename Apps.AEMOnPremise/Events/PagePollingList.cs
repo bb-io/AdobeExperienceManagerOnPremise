@@ -58,7 +58,7 @@ public class PagePollingList(InvocationContext invocationContext) : Invocable(in
 
     private async Task<List<PageResponse>> GetPagesAsync(List<KeyValuePair<string, string>> queryParams)
     {
-        var request = new RestRequest("/content/services/bb-aem-connector/pages/events.json");
+        var request = new RestRequest("/content/services/bb-aem-connector/content/events.json");
         foreach (var param in queryParams)
         {
             request.AddQueryParameter(param.Key, param.Value);
