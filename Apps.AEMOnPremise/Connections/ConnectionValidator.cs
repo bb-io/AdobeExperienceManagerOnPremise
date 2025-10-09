@@ -14,7 +14,7 @@ public class ConnectionValidator: IConnectionValidator
         try
         {
             var client = new ApiClient(authenticationCredentialsProviders.ToList());
-            var request = new RestRequest("/content/services/bb-aem-connector/pages/events.json", Method.Get);
+            var request = new RestRequest("/content/services/bb-aem-connector/content/events.json", Method.Get);
 
             var response = await client.ExecuteWithErrorHandling(request);
             return new()

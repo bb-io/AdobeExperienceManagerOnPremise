@@ -13,7 +13,6 @@ public class Application : IApplication, ICategoryProvider
         ];
         set { }
     }
-
     public T GetInstance<T>()
     {
         throw new NotImplementedException();

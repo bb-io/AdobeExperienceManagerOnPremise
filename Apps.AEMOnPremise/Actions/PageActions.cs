@@ -138,7 +138,7 @@ public class PageActions(InvocationContext invocationContext, IFileManagementCli
 
     private RestRequest BuildPageSearchRequest(SearchPagesRequest searchCriteria)
     {
-        var request = new RestRequest("/content/services/bb-aem-connector/pages/events.json");
+        var request = new RestRequest("/content/services/bb-aem-connector/content/events.json");
 
         if (searchCriteria.RootPath != null)
         {

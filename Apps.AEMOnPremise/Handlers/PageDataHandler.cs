@@ -9,7 +9,7 @@ public class PageDataHandler(InvocationContext invocationContext) : Invocable(in
 {
     public async Task<IEnumerable<DataSourceItem>> GetDataAsync(DataSourceContext context, CancellationToken cancellationToken)
     {
-        var request = new RestRequest("/content/services/bb-aem-connector/pages/events.json");
+        var request = new RestRequest("/content/services/bb-aem-connector/content/events.json");
         var pages = await Client.Paginate<PageResponse>(request);
         return pages.Where(x => context.SearchString == null || x.Title.Contains(context.SearchString, StringComparison.OrdinalIgnoreCase))
             .Select(x => new DataSourceItem(x.Path, x.Title));
