@@ -12,7 +12,7 @@ using RestSharp;
 
 namespace Apps.AEMOnPremise.Actions;
 
-[ActionList]
+[ActionList("Content")]
 public class PageActions(InvocationContext invocationContext, IFileManagementClient fileManagementClient) : Invocable(invocationContext)
 {
     [Action("Search content", Description = "Search for content based on provided criteria.")]
